@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Register NGO{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center py-3">
+          <h3 class="mb-0">
+            <i class="bi bi-building"></i> Register New NGO
+          </h3>
+        </div>
+        <div class="card-body p-4">
+          <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">NGO Name <span class="text-danger">*</span></label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                  <div class="text-danger small">{{ form.name.errors }}</div>
+                {% endif %}
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.registration_number.id_for_label }}" class="form-label">Registration Number <span class="text-danger">*</span></label>
+                {{ form.registration_number }}
+                {% if form.registration_number.errors %}
+                  <div class="text-danger small">{{ form.registration_number.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.contact_person.id_for_label }}" class="form-label">Contact Person <span class="text-danger">*</span></label>
+                {{ form.contact_person }}
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email <span class="text-danger">*</span></label>
+                {{ form.email }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.phone.id_for_label }}" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                {{ form.phone }}
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.website.id_for_label }}" class="form-label">Website</label>
+                {{ form.website }}
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.address.id_for_label }}" class="form-label">Address <span class="text-danger">*</span></label>
+              {{ form.address }}
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.city.id_for_label }}" class="form-label">City <span class="text-danger">*</span></label>
+                {{ form.city }}
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="{{ form.state.id_for_label }}" class="form-label">State <span class="text-danger">*</span></label>
+                {{ form.state }}
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success btn-lg">
+                Register NGO
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center bg-light">
+          <a href="{% url 'ngo_list' %}" class="btn btn-link">View All NGOs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

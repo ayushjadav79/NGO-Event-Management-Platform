@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h1>{{ event.title }}</h1>
+    <p class="lead">Organized by: <strong>{{ event.ngo.name }}</strong></p>
+    <hr>
+    <p>{{ event.description|linebreaks }}</p>
+    <ul class="list-unstyled">
+      <li><strong>Date & Time:</strong> {{ event.date_time|date:"d F Y, h:i A" }}</li>
+      <li><strong>Location:</strong> {{ event.location_city }}, {{ event.location_state }}</li>
+      <li><strong>Contact:</strong> {{ event.ngo.contact_person }} | {{ event.ngo.email }} | {{ event.ngo.phone }}</li>
+      {% if event.ngo.website %}
+      <li><strong>Website:</strong> <a href="{{ event.ngo.website }}" target="_blank">{{ event.ngo.website }}</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="col-md-4">
+    {% if event.poster %}
+    <img src="{{ event.poster.url }}" class="img-fluid rounded shadow" alt="Event Poster">
+    {% endif %}
+  </div>
+</div>
+<a href="{% url 'public_event_list' %}" class="btn btn-secondary mt-3">← Back to Events</a>
+{% endblock %}
